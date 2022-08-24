@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+
+
+
+
+// prisma/schema.prisma
+
+
+
+
+//Item model
+model Item{
+  id          Int       @id @default(autoincrement())
+  name        String
+  subName     String?
+  description  String?
+  company     String?
+  baseUnit    String
+  smallUnit   String
+  conversionRatio   Float @default(1000)
+  tag          String[]
+  type         String[]
+  category     String[]
+  imagePath    String?
+}
+
+model ItemStock{
+  id         Int @default(autoincrement())
+  itemId     Int @unique
+  baseUnitQuantity Int @default(0)
+  smallUnitQuantity Int @default(0)
+
+
+}
+
+model PurchaseHistory{
+  id  Int @id @default(autoincrement())
+  billId Int 
+  itemId  Int
+  baseUnitQuantity Int
+  smallerUnitQuantity Int
+  rate Float
+ 
+}
+
+model PurchaseBill{
+  id Int @id @default(autoincrement())
+  dealerPan String
+  dealerName String
+  billNo Int 
+  totalMarkedPrice Float
+  totalCostPrice Float
+  totalDiscount Float
+  date DateTime
+}
+
+model Sells{
+  id      Int  @id @default(autoincrement())
+  itemId  Int
+  
+  baseUnitQuantity Int
+  smallUnitQuantity Int
+  rate  Float
+ 
+  billNo        Int
+
+}
+
+
+model Bill{
+  id  Int @id @default(autoincrement())
+  totalAmount Float
+  discount    Float
+  sellingPrice Float
+  remarks String?
+  date    DateTime @default(now())
+   customerName  String
+  customerPan   String?
+}
+
+model MarkedPrice{
+  id Int @id @default(autoincrement())
+  itemId Int @unique
+  rate Float @default(0)
+  defaultDiscountPercentage Float @default(0)
+
+}

@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Item" ALTER COLUMN "imagePath" DROP NOT NULL,
+ALTER COLUMN "imagePath" SET DATA TYPE TEXT;
