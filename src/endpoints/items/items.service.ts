@@ -38,6 +38,7 @@ export class ItemsService extends PrismaExceptionHandler {
     const item = await prisma.item.create({ data: createItemDto });
     await prisma.itemStock.create({ data: { itemId: item.id } });
     await prisma.markedPrice.create({ data: { itemId: item.id } });
-    return { data: item };
+    console.log(item);
+    return item;
   }
 }
