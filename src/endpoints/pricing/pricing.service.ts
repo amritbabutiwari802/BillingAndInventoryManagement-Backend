@@ -23,6 +23,7 @@ export class PricingService {
       where: { itemId },
       data: updatePricingDto,
     });
+    return result;
   }
 
   remove(id: number) {

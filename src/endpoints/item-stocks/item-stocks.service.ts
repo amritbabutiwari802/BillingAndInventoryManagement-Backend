@@ -13,13 +13,7 @@ export class ItemStocksService {
   }
 
   findAll() {
-    return prismaSafeExecuteFunc(
-      (prisma: PrismaService, params: any) => {
-        return prisma.itemStock.findMany();
-      },
-      this.prisma,
-      {},
-    );
+    return this.prisma.itemStock.findMany();
   }
 
   findOne(id: number) {
